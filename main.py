@@ -9,19 +9,17 @@ wordly = np.array(words)
 #faster
 set_message = set(wordly)
 #print(wordly) faster
-message = wordly[random.randint(0, len(wordly)-1)]
-print(message)
-trials = 6
-i=0
-while i < trials:
-    guess = input(  "Enter a word ")
-    if guess in set_message:
-        if guess == message:
-           print("You guessed the word!")
-           break
+
+def pick_word():
+    return wordly[random.randint(0, len(wordly)-1)]
+
+def check_guess(guess, target):
+    colors = []
+    for i, ch in enumerate(guess):
+        if ch == target[i]:
+            colors.append("green")
+        elif ch in target:
+            colors.append("yellow")
         else:
-           print("Try again!")
-           i+=1
-    else:
-        print("Word not in list, try again!")
-        
+            colors.append("gray")
+    return colors
